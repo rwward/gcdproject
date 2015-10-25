@@ -12,7 +12,7 @@ First, the script reads the feature names from features.txt, so that they can be
 
 ## Step 2: Extracting mean and standard deviation variables
 
-grepl is run on the list of feature names to find the locations of the mean and standard deviation variables. the "fixed=TRUE" parameter is added for the mean() search to exclude meanFreq; the actual meaning of meanFreq is unclear, except that it is clearly not the mean of the measurement, which is what the assignment asked for. These two logical vectors are then added together and converted back to a logical vector. Two "TRUE" values are then added to the start of the resulting vector, so that when it is used to subset the data, it keeps the subject and activity variables. This final "varstokeep" vector is then used to subset the merged dataset.
+grepl is run on the list of feature names to find the locations of the mean and standard deviation variables. the "fixed=TRUE" parameter is added for the mean() search to exclude meanFreq, which is not the actual mean value of the measurement. These two logical vectors are then added together and converted back to a logical vector. Two "TRUE" values are then added to the start of the resulting vector, so that when it is used to subset the data, it keeps the subject and activity variables. This final "varstokeep" vector is then used to subset the merged dataset.
 
 ## Step 3: Creating meaningful activity labels
 
