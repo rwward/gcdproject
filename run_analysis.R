@@ -3,7 +3,6 @@ library(dplyr)
 ##1.
 #read feature names
 featnames <- read.table(file="./features.txt", header=F, nrows=561)
-featnames$V2
 
 
 #read three elements of test set
@@ -30,7 +29,6 @@ alldata <- rbind(trainall, testall)
 #keep only mean and standard deviation variables, not including meanFreq
 #find var
 meanvars <- grepl("mean()", featnames$V2, fixed=TRUE)
-sum(meanvars)
 stdvars <- grepl("std()", featnames$V2)
 varstokeep <- as.logical(meanvars + stdvars)
 
