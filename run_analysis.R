@@ -2,19 +2,19 @@ library(dplyr)
 
 ##1.
 #read feature names
-featnames <- read.table(file="./gdproj/features.txt", header=F, nrows=561)
+featnames <- read.table(file="./features.txt", header=F, nrows=561)
 featnames$V2
 
 
 #read three elements of test set
-testdata <- read.table(file="./gdproj/test/X_test.txt", header=FALSE, nrows=2947, col.names=featnames$V2)
-testactivities <- read.table(file="./gdproj/test/Y_test.txt", header=FALSE, nrows=2947, col.names="activity")
-testsubjects <- read.table(file="./gdproj/test/subject_test.txt", header=FALSE, nrows=2947, col.names="subject")
+testdata <- read.table(file="./test/X_test.txt", header=FALSE, nrows=2947, col.names=featnames$V2)
+testactivities <- read.table(file="./test/Y_test.txt", header=FALSE, nrows=2947, col.names="activity")
+testsubjects <- read.table(file="./test/subject_test.txt", header=FALSE, nrows=2947, col.names="subject")
 
 #read three elements of training set
-traindata <- read.table(file="./gdproj/train/X_train.txt", header=FALSE, nrows=7352, col.names=featnames$V2)
-trainactivities <- read.table(file="./gdproj/train/Y_train.txt", header=FALSE, nrows=7352, col.names="activity")
-trainsubjects <- read.table(file="./gdproj/train/subject_train.txt", header=FALSE, nrows=7352, col.names="subject")
+traindata <- read.table(file="./train/X_train.txt", header=FALSE, nrows=7352, col.names=featnames$V2)
+trainactivities <- read.table(file="./train/Y_train.txt", header=FALSE, nrows=7352, col.names="activity")
+trainsubjects <- read.table(file="./train/subject_train.txt", header=FALSE, nrows=7352, col.names="subject")
 
 #bind together elements of test set
 testall <- cbind(testsubjects, testactivities, testdata)
@@ -43,7 +43,7 @@ subdata <- alldata[,varstokeep]
 
 ##3. 
 #read in activity labels
-activitylabels <- read.table("./gdproj/activity_labels.txt")
+activitylabels <- read.table("./activity_labels.txt")
 #convert activity variable to factor, adding labels
 subdata$activity <- factor(subdata$activity, labels=activitylabels$V2)
 
@@ -56,8 +56,4 @@ subdata$activity <- factor(subdata$activity, labels=activitylabels$V2)
 
 #create new dataframem 
 summarydata <- subdata %>% group_by(activity, subject) %>% summarize_each(funs(mean))
-
-
-
-
-
+summarydata
